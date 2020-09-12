@@ -1,31 +1,34 @@
 package com.mcd.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.mcd.pojo.Books;
 import com.mcd.service.impl.BooksServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+import javax.servlet.http.HttpServletResponse;
+
+@RestController
 public class HelloController {
     @Autowired
     BooksServiceImpl booksService;
 
 
     @GetMapping("/hello")
-    @ResponseBody
-    public String hello(){
-        return booksService.selAll().toString();
+    @CrossOrigin
+    public String hello(HttpServletResponse response){
+        response.setHeader("Access-Control-Allow-Origin","*");
+        String s = JSON.toJSONString(booksService.selAll());
+        System.out.println(s);
+        return s;
     }
 
 
-    @GetMapping("/add")
-    @ResponseBody
-    public int addBook(){
-        Books books=new Books(1,"2",3,"4");
+    @PostMapping("/add")
+    @CrossOrigin
+    public void addBook(@RequestBody Books books){
 
 
-        return booksService.insBook(books);
+        System.out.println(books);
     }
 }
