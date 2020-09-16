@@ -1,12 +1,9 @@
-package com.mcd.pojo;
-
-import com.mcd.pojo.DTO.Cargo;
+package com.mcd.pojo.DTO;
 
 import java.math.BigInteger;
 import java.sql.Date;
-import java.util.List;
 
-public class PoBase {
+public class PoBaseToDb {
     private BigInteger id;
     private String name;
     private Date shipdate;
@@ -18,11 +15,9 @@ public class PoBase {
     private String port;
     private String transportation;
     private Integer status;
-
     private String result;
-    private List<Cargo> cargotable;
 
-    public PoBase(BigInteger id, String name, Date shipdate, Date paydate, String pay, String country, String port, String transportation, Integer status, String result, List<Cargo> cargotable) {
+    public PoBaseToDb(BigInteger id, String name, Date shipdate, Date paydate, String pay, String country, String port, String transportation, Integer status, String result) {
         this.id = id;
         this.name = name;
         this.shipdate = shipdate;
@@ -33,12 +28,11 @@ public class PoBase {
         this.transportation = transportation;
         this.status = status;
         this.result = result;
-        this.cargotable = cargotable;
     }
 
     @Override
     public String toString() {
-        return "PoBase{" +
+        return "PoBaseToDb{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", shipdate=" + shipdate +
@@ -49,11 +43,10 @@ public class PoBase {
                 ", transportation='" + transportation + '\'' +
                 ", status=" + status +
                 ", result='" + result + '\'' +
-                ", cargotable=" + cargotable +
                 '}';
     }
 
-    public PoBase() {
+    public PoBaseToDb() {
     }
 
     public BigInteger getId() {
@@ -134,13 +127,5 @@ public class PoBase {
 
     public void setResult(String result) {
         this.result = result;
-    }
-
-    public List<Cargo> getCargotable() {
-        return cargotable;
-    }
-
-    public void setCargotable(List<Cargo> cargotable) {
-        this.cargotable = cargotable;
     }
 }

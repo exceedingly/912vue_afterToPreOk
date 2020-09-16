@@ -1,34 +1,39 @@
 package com.mcd.pojo.DTO;
 
-public class Cargo {
+import java.math.BigInteger;
+
+public class CargoToDb {
     private String style;
     private  String snumber;
     private long count;
     private long price;
     private long amount;
     private String remark;
+    private BigInteger pid;
 
-    public Cargo() {
-    }
-
-    public Cargo(String style, String snumber, long count, long price, long amount, String remark) {
+    public CargoToDb(String style, String snumber, long count, long price, long amount, String remark, BigInteger pid) {
         this.style = style;
         this.snumber = snumber;
         this.count = count;
         this.price = price;
         this.amount = amount;
         this.remark = remark;
+        this.pid = pid;
+    }
+
+    public CargoToDb() {
     }
 
     @Override
     public String toString() {
-        return "Cargo{" +
+        return "CargoToDb{" +
                 "style='" + style + '\'' +
                 ", snumber='" + snumber + '\'' +
                 ", count=" + count +
                 ", price=" + price +
                 ", amount=" + amount +
                 ", remark='" + remark + '\'' +
+                ", pid=" + pid +
                 '}';
     }
 
@@ -78,5 +83,13 @@ public class Cargo {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public BigInteger getPid() {
+        return pid;
+    }
+
+    public void setPid(BigInteger pid) {
+        this.pid = pid;
     }
 }
