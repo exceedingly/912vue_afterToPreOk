@@ -20,6 +20,13 @@ public class HelloController {
     @Autowired
     CargoServiceImpl cargoService;
 
+    @GetMapping("/gettest")
+
+    public String gettest(HttpServletResponse response) {
+        String s = JSON.toJSONString(poBaseService.selPoBase());
+
+        return s;
+    }
 
     @GetMapping("/hello")
     @CrossOrigin
@@ -33,7 +40,8 @@ public class HelloController {
 
     @PostMapping("/add")
     @CrossOrigin
-    public void addBook(@RequestBody PoBase poBase) {
+    public void addBook(@RequestBody PoBase poBase,HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
         List<Cargo> cargos = poBase.getCargotable();
         cargoService.inscargo(cargos,poBase.getId());
         poBaseService.inscargo(poBase);
@@ -43,7 +51,8 @@ public class HelloController {
 
     @DeleteMapping("/DeletePobaseAndCargoById/{id}")
     @CrossOrigin
-    public void deletePobaseAndCargoById(@PathVariable("id") BigInteger id){
+    public void deletePobaseAndCargoById(@PathVariable("id") BigInteger id,HttpServletResponse response){
+        response.setHeader("Access-Control-Allow-Origin", "*");
         poBaseService.deletePoBaseToDbByid(id);
         cargoService.deleteCargoToDbByid(id);
     }

@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
+
 @RestController
 public class PurContractController {
 
@@ -22,7 +24,8 @@ public class PurContractController {
 
     @PostMapping("/inspurontract")
     @CrossOrigin
-    public void addBook(@RequestBody PurContract purContractDb) {
+    public void addBook(@RequestBody PurContract purContractDb , HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
         System.out.println(purContractDb);
 
 
